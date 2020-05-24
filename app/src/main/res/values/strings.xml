@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Score</string>
+    <string name="score">配乐</string>
+    <string name="article">文章</string>
+</resources>
