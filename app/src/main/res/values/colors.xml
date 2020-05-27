@@ -6,4 +6,6 @@
     <color name="tab_bg">#00FFFFFF</color>
     <color name="tabText_unselected">#818080</color>
     <color name="tabText_selected">#48A4EC</color>
+    <color name="text_color">#666666</color>
+    <color name="divider">#BEBEBE</color>
 </resources>

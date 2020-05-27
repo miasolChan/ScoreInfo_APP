@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.text.TextPaint;
 import android.view.View;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
+
+import com.example.score.fragment.ArticleFragment;
+import com.example.score.fragment.ScoreFragment;
 
 public class MainActivity extends FragmentActivity {
 
@@ -21,6 +25,7 @@ public class MainActivity extends FragmentActivity {
         //标签栏
         tabHost = (TabHost)findViewById(R.id.tabHost);
         initTab(tabHost);
+
     }
 
     /**
@@ -37,15 +42,16 @@ public class MainActivity extends FragmentActivity {
             tabSpec.setContent(R.id.tab1);
             tabHost.addTab(tabSpec);
         }
+        tabHost.setOnTabChangedListener(new MyTabChangedListener());
         tabHost.setCurrentTab(0);
         updateTab(tabHost);
-        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            @Override
-            public void onTabChanged(String tabId) {
-                tabHost.setCurrentTabByTag(tabId);
-                updateTab(tabHost);
-            }
-        });
+//        tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+//            @Override
+//            public void onTabChanged(String tabId) {
+//                tabHost.setCurrentTabByTag(tabId);
+//                updateTab(tabHost);
+//            }
+//        });
     }
 
     /**
@@ -74,4 +80,23 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    /**
+     * Tab按键界面跳转
+     */
+    private class MyTabChangedListener implements OnTabChangeListener{
+
+        @Override
+        public void onTabChanged(String tabId) {
+            tabHost.setCurrentTabByTag(tabId);
+            updateTab(tabHost);
+            if(tabId.equals("page1")){
+                System.out.println("配乐页");
+                getSupportFragmentManager().beginTransaction().replace(R.id.tab1, new ScoreFragment()).commit();
+            }else if(tabId.equals("page2")){
+                System.out.println("文章页");
+                getSupportFragmentManager().beginTransaction().replace(R.id.tab1, new ArticleFragment()).commit();
+            }
+
+        }
+    }
 }
