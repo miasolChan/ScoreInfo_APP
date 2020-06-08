@@ -1,7 +1,11 @@
 package com.example.score.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -9,9 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 
-import com.example.score.Activity.ArticleWebActivity;
+import com.example.score.R;
+import com.example.score.activity.ArticleWebActivity;
 import com.example.score.adapter.ArticleListViewAdapter;
 import com.example.score.adapter.SpinnerAdapter;
 
@@ -21,35 +27,42 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.example.score.R;
 import com.example.score.bean.ArticleInfo;
 import com.example.score.service.GetArticleService;
+import com.example.score.util.DBFileUtil;
+import com.example.score.util.DBManager;
+import com.example.score.util.Global;
 
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
 
+
 public class ArticleFragment extends Fragment {
 
     //spinner
     private Spinner kindSpinner;
-    private String[] kinds = {"全部","专访","乐评"};
+    private String[] kinds = {"全部文章","作曲专访","片段剖析"};
     private int selectId = 0;
     //listView
     private ListView articleLV;
     private List<ArticleInfo> infoList;
-    private GetArticleService getArticleService = new GetArticleService();
+    private GetArticleService getArticleService;
     private SpinnerAdapter spinnerAdapter;
     private ArticleListViewAdapter articleAdapter;
     private MySpinnerListener mySpinnerListener;
-    @Nullable
+    //
+   // Context articleContext = this.getContext();
+    //
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.article_main_page,container,false);
-
         //spinner
         //关联
         kindSpinner = (Spinner) view.findViewById(R.id.spinner);
@@ -62,9 +75,10 @@ public class ArticleFragment extends Fragment {
         kindSpinner.setOnItemSelectedListener(new MySpinnerListener());
         //
         //listView
-        //绑定
+        //绑定控件
         articleLV = (ListView)view.findViewById(R.id.article_LV);
         //初始化列表信息
+        getArticleService = new GetArticleService();
         infoList = getArticleService.setArticleList();
         //绑定适配器
         articleAdapter = new ArticleListViewAdapter(infoList,this.getContext());
@@ -80,8 +94,27 @@ public class ArticleFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        articleLV.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int lastPos = view.getLastVisiblePosition();
+                System.out.println("lastPos="+lastPos);
+                //infoList = getArticleService.addArticleList(infoList,lastPos);
+                //articleAdapter = new ArticleListViewAdapter(infoList,articleContext);
+                //articleLV.setAdapter(articleAdapter);
+            }
+        });
         return view;
     }
+
+    /**
+     *
+     */
 
 
 

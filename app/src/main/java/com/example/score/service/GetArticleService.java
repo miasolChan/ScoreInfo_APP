@@ -1,19 +1,58 @@
 package com.example.score.service;
 
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Handler;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import com.example.score.bean.ArticleInfo;
-import com.example.score.util.ImageLoaderUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.score.util.Global.AF_CNT;
+import static com.example.score.util.Global.A_image;
+import static com.example.score.util.Global.A_subhead;
+import static com.example.score.util.Global.A_title;
+import static com.example.score.util.Global.A_type;
+import static com.example.score.util.Global.A_url;
+import static com.example.score.util.Global.DB;
+
 public class GetArticleService {
-    private String[] image = {"image_0.jpg","image_1.jpg","image_2.jpg"};
-    private String[] title = {"疫情下的作曲劳模Alexandr Desplat","专访《囧妈》作曲鹏飞","专访John Powell"};
-    private String[] subhead = {"谈新作《法兰西特派》与《木偶奇遇记》","音乐打磨800遍，只为今年华语乐坛电影最动人的一场戏","谈《野性的呼唤》"};
-    private String[] url = {"http://www.baidu.com","2","3"};
-    private int[] type = {1,1,2};
+
+    public GetArticleService() {
+        //第一次加载数据库赋值
+        if(AF_CNT == 0) {
+            initGetArticleService();
+            AF_CNT++;
+        }
+    }
+
+    /**
+     * 数据库调取赋值
+     */
+    private void initGetArticleService(){
+        DB.openDB();
+        SQLiteDatabase thisDB = DB.getmDB();
+        List<ArticleInfo> articleInfoList = new ArrayList<ArticleInfo>();
+        String sql = "select * from articleInfo";
+        Cursor cuser = thisDB.rawQuery(sql,null);
+        try {
+            while (cuser.moveToNext()){
+                ArticleInfo item = new ArticleInfo();
+                int type = cuser.getInt(cuser.getColumnIndex("type"));
+                String imageId = cuser.getString(cuser.getColumnIndex("imageUrl"));
+                String title = cuser.getString(cuser.getColumnIndex("title"));
+                String  subhead = cuser.getString(cuser.getColumnIndex("subhead"));
+                String url = cuser.getString(cuser.getColumnIndex("articleUrl"));
+                A_type.add(type);
+                A_title.add(title);
+                A_subhead.add(subhead);
+                A_image.add(imageId);
+                A_url.add(url);
+            }
+            cuser.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     /**、
      * 初始化添加
@@ -22,21 +61,29 @@ public class GetArticleService {
     public List<ArticleInfo> setArticleList(){
         List<ArticleInfo> articleInfoList = new ArrayList<ArticleInfo>();
         //添加信息
-        for (int i = 0; i < title.length ; i++) {
+        for (int i = 0; i < A_title.size() ; i++) {
             final ArticleInfo item = new ArticleInfo();
             //初始化图片id
-            item.setImageId(image[i]);
+            item.setImageId(A_image.get(i));
             //标题
-            item.setTitle(title[i]);
+            item.setTitle(A_title.get(i));
             //副标题
-            item.setSubhead(subhead[i]);
+            item.setSubhead(A_subhead.get(i));
             //文章网址
-            item.setUrl(url[i]);
+            item.setUrl(A_url.get(i));
             //类型
-            item.setType(type[i]);
+            item.setType(A_type.get(i));
             articleInfoList.add(item);
         }
         return articleInfoList;
+    }
+    /**
+     * 更新添加内容
+    * */
+
+    public List<ArticleInfo> addArticleList(List<ArticleInfo> infoList,int lastPos){
+
+        return infoList;
     }
 
     /**、

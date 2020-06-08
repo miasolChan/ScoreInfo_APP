@@ -1,13 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_gravity="center_horizontal">
+
+        <!--存放图片的ViewPager-->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/loopviewpager"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#33000000">
+            <!-- 标题-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="left"
+                android:id="@+id/loop_dec"/>
+            <!-- 小圆点-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_dots_loop"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:padding="10dp">
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginVertical="20dp"
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/hot_title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/hot_0_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    app:srcCompat="@drawable/post_0" />
+
+                <TextView
+                    android:id="@+id/hot_0_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/hot_1_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    app:srcCompat="@drawable/post_1" />
+
+                <TextView
+                    android:id="@+id/hot_1_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/hot_2_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    app:srcCompat="@drawable/post_2" />
+
+                <TextView
+                    android:id="@+id/hot_2_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/more_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/more_btm" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

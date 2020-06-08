@@ -23,33 +23,11 @@ public class ImageLoaderUtils{
 
     }
 
-    public Bitmap getImageBitmap(final String path) {
-        return  null;
-    }
-//        URL imageUrl = null;
-//        Bitmap bitmap = null;
-//        InputStream inputStream = null;
-//        try {
-//            imageUrl = new URL(path);
-//            HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
-//            conn.setDoInput(true);
-//            conn.connect();
-//            inputStream = conn.getInputStream();
-//            bitmap = BitmapFactory.decodeStream(inputStream);
-//            inputStream.close();
-//
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return bitmap;
-//    }
 
     public  static void getImageBitmap(final String url, final ImageView imageView, final Context context) {
         new Thread(new Runnable() {
             @Override
-            public void run() {
+            public synchronized void run() {
                 final Bitmap bitmap ;
                 InputStream is=null;
                 try {

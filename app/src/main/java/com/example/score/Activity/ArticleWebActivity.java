@@ -1,4 +1,4 @@
-package com.example.score.Activity;
+package com.example.score.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

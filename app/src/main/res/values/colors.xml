@@ -8,4 +8,10 @@
     <color name="tabText_selected">#48A4EC</color>
     <color name="text_color">#666666</color>
     <color name="divider">#BEBEBE</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="Spaire">#CDCDB4</color>
+    <color name="btn">#449dd5</color>
+    <color name="green">#5dc534</color>
+
 </resources>
