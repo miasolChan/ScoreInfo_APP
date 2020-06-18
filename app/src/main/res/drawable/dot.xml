@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/white_dot" android:state_enabled="true"/>
-    <item android:drawable="@drawable/gray_dot"  android:state_enabled="false"/>
+    <item android:drawable="@drawable/undot" android:state_enabled="false"/>
+    <item android:drawable="@drawable/vdot"  android:state_enabled="true"/>
 
 </selector>

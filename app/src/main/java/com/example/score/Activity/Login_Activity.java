@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -32,13 +34,14 @@ public class Login_Activity extends Activity implements View.OnClickListener{
     private boolean flag = false;
     private String account, password;
     private UsersDBHelper dbHelper;
-
+    private CheckBox checkBox;
+    private  SharedPreferences sp;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-
     }
 
     private void init() {
@@ -58,8 +61,7 @@ public class Login_Activity extends Activity implements View.OnClickListener{
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     edit_password.clearFocus();
-                    InputMethodManager imm =
-                            (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(edit_password.getWindowToken(), 0);
                 }
                 return false;
@@ -69,11 +71,26 @@ public class Login_Activity extends Activity implements View.OnClickListener{
         btn_login = (Button) findViewById(R.id.btn_login);
         btn_register = (Button) findViewById(R.id.btn_register);
         openpwd = (ImageButton) findViewById(R.id.btn_openpwd);
+        checkBox = (CheckBox)findViewById(R.id.checkBox);
         text_msg.setOnClickListener(this);
         btn_login.setOnClickListener(this);
         btn_register.setOnClickListener(this);
         openpwd.setOnClickListener(this);
         dbHelper = new UsersDBHelper(this, "Data.db", null, 1);
+
+        //
+        sp = getSharedPreferences("UserInfo",MODE_PRIVATE);
+        editor = sp.edit();//获取编辑器
+        try{
+            account = sp.getString("account","");
+            password = sp.getString("password","");
+            edit_account.setText(account);
+            edit_password.setText(password);
+            checkBox.setChecked(true);
+        }catch (NullPointerException e){
+            System.out.println("首次登陆无信息");
+            e.printStackTrace();
+        }
 
     }
 
@@ -93,14 +110,14 @@ public class Login_Activity extends Activity implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.btn_openpwd:
-                if (flag == true) {//不可见
+                if (flag == true) {//不\可见
                     edit_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     flag = false;
-                    openpwd.setBackgroundResource(R.drawable.invisible);
+                    openpwd.setBackgroundResource(R.drawable.visible);
                 } else {
                     edit_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     flag = true;
-                    openpwd.setBackgroundResource(R.drawable.visible);
+                    openpwd.setBackgroundResource(R.drawable.invisible);
                 }
                 break;
             case R.id.text_msg:
@@ -111,22 +128,21 @@ public class Login_Activity extends Activity implements View.OnClickListener{
     }
 
     /**
-     * 读取SharedPreferences存储的键值对
-     * */
-    public void readUsersInfo(){
-        SharedPreferences sharedPreferences = getSharedPreferences("UsersInfo",MODE_PRIVATE);
-        account = sharedPreferences.getString("username","");
-        password = sharedPreferences.getString("password","");
-    }
-    /**
      * 读取UserData.db中的用户信息
      * */
     protected void readUserInfo() {
         if (login(edit_account.getText().toString(), edit_password.getText().toString())) {
+            //登陆成功
             Toast.makeText(this, "登陆成功！", Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(Login_Activity.this, UserInfoActivity.class);
+            //存入
+            if(checkBox.isChecked()){
+                editor.putString("account", String.valueOf(edit_account.getText()));
+                editor.putString("password",String.valueOf(edit_password.getText()));
+                editor.commit();
+                System.out.println("存储信息成功");
+            }
             Intent intent = new Intent(Login_Activity.this, HomeActivity.class);
-            //intent.putExtra("Username",edit_account.getText().toString());
+            intent.putExtra("Username",edit_account.getText().toString());
             startActivity(intent);
         } else {
             Toast.makeText(this, "账户或密码错误，请重新输入！！", Toast.LENGTH_SHORT).show();

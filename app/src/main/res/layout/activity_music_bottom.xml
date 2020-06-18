@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:paddingHorizontal="10dp"
+    android:background="@drawable/bg_dialog">
+
+    <ImageView
+        android:id="@+id/barImg"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_dialog"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/MusicTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="00:00/00:00" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/barName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginLeft="10dp"
+                android:text="暂无歌曲播放" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/preSong"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/previou"
+                    android:scaleType="fitXY" />
+
+                <ImageButton
+                    android:id="@+id/BtnPlayorPause"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/pause"
+                    android:scaleType="fitXY" />
+
+                <ImageButton
+                    android:id="@+id/nextSong"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/next"
+                    android:scaleType="fitXY" />
+                <ImageButton
+                    android:id="@+id/musicMenu"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/menu"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

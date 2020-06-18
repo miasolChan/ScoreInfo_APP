@@ -46,7 +46,7 @@ public class ScoreFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.score_main_page,container,false);
+        View view=inflater.inflate(R.layout.fragment_score_page,container,false);
         initLoopView(view);
 
         //按钮绑定
@@ -86,6 +86,10 @@ public class ScoreFragment extends Fragment {
         return view;
     }
 
+    /**
+     * 轮播图设置
+     * @param view
+     */
     private void initLoopView(View view) {
         viewPager = (ViewPager)view.findViewById(R.id.loopviewpager);
         ll_dots_container = (LinearLayout)view.findViewById(R.id.ll_dots_loop);
@@ -93,11 +97,11 @@ public class ScoreFragment extends Fragment {
 
         // 图片资源id数组
         mImg = new int[]{
-                R.drawable.image_0,
-                R.drawable.image_1,
-                R.drawable.image_2,
-                R.drawable.image_0,
-                R.drawable.image_1
+                R.drawable.banner_0,
+                R.drawable.banner_1,
+                R.drawable.banner_2,
+                R.drawable.banner_5,
+                R.drawable.banner_4
         };
 
         // 文本描述
@@ -124,7 +128,7 @@ public class ScoreFragment extends Fragment {
         LinearLayout.LayoutParams layoutParams;
         for(int i=0;i<mImg.length;i++){
             //初始化要显示的图片对象
-            layoutParams = new LinearLayout.LayoutParams(270,170);
+            layoutParams = new LinearLayout.LayoutParams(288,180);
             layoutParams.gravity = Gravity.CENTER;
             imageView = new ImageView(view.getContext());
             imageView.setLayoutParams(layoutParams);
@@ -135,7 +139,7 @@ public class ScoreFragment extends Fragment {
             //加引导点
             dotView = new View(view.getContext());
             dotView.setBackgroundResource(R.drawable.dot);
-            layoutParams = new LinearLayout.LayoutParams(10,10);
+            layoutParams = new LinearLayout.LayoutParams(25,25);
             if(i!=0){
                 layoutParams.leftMargin=10;
             }
@@ -181,7 +185,7 @@ public class ScoreFragment extends Fragment {
                 isRunning = true;
                 while(isRunning){
                     try{
-                        Thread.sleep(5000);
+                        Thread.sleep(3000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

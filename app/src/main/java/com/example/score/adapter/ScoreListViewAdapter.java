@@ -19,7 +19,6 @@ public class ScoreListViewAdapter extends BaseAdapter {
 
     private List<FilmInfo> infoList;
     private Context context;
-    private int count = 0;
 
     public ScoreListViewAdapter(List<FilmInfo> infoList, Context context) {
         this.infoList = infoList;
@@ -59,9 +58,14 @@ public class ScoreListViewAdapter extends BaseAdapter {
         //
         if(parent.getChildCount() == position) {
             FilmInfo item = infoList.get(position);
-            new ImageLoaderUtils().getImageBitmap(item.getImageHttp(), holder.imageView, this.context);
-            count++;
-            System.out.println(count);
+            // 给 ImageView 设置一个 tag
+            holder.imageView.setTag(item.getName());
+            //预设一个图片
+            holder.imageView.setImageResource(R.drawable.img_error);
+            //通过 tag 来防止图片错位
+            if(holder.imageView.getTag() != null && holder.imageView.getTag().equals(item.getName())){
+                new ImageLoaderUtils().getImageBitmap(item.getImageHttp(), holder.imageView, this.context);
+            }
         }
         return convertView;
     }
@@ -72,6 +76,15 @@ public class ScoreListViewAdapter extends BaseAdapter {
         TextView composer;
 
     }
+//    // 给 ImageView 设置一个 tag
+//holder.img.setTag(imgUrl);
+//// 预设一个图片
+//holder.img.setImageResource(R.drawable.ic_launcher);
+//
+//// 通过 tag 来防止图片错位
+//if (imageView.getTag() != null && imageView.getTag().equals(imageUrl)) {
+//        imageView.setImageBitmap(result);
+//    }
 
 
 }

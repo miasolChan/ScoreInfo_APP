@@ -107,7 +107,12 @@ public class GetMusicService {
                 //
                 MusicInfo music = new MusicInfo();
                 String name = cuser.getString(cuser.getColumnIndex("music_name"));
+                int tvid = cuser.getInt(cuser.getColumnIndex("tvId"));
+                String fileId = cuser.getString(cuser.getColumnIndex("fileId"));
+                music.setTvId(tvid);
                 music.setName(name);
+                music.setFileId(fileId);
+                music.setImageHttp();
                 musicInfos.add(music);
             }
             cuser.close();

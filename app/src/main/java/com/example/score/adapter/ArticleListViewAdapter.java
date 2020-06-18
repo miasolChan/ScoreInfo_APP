@@ -60,8 +60,6 @@ public class ArticleListViewAdapter extends BaseAdapter {
         if(parent.getChildCount() == position) {
             ArticleInfo item = infoList.get(position);
             new ImageLoaderUtils().getImageBitmap(item.getImageHttp(), holder.imageView, this.context);
-            count++;
-            System.out.println(count);
         }
        return convertView;
     }

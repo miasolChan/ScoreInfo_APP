@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="40dp"
+        android:paddingHorizontal="30dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -16,7 +17,8 @@
             android:layout_width="80dp"
             android:layout_height="100dp"
             android:layout_marginVertical="5dp"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:src="@drawable/img_error"/>
 
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -36,6 +38,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/film_name"
                     android:textSize="15dp"
+                    android:textColor="@color/text_color"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -44,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:text="TextView"
                     android:textSize="15dp"
+                    android:textColor="@color/text_color"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -58,6 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/composer"
+                    android:textColor="@color/text_color"
                     android:textSize="13dp" />
 
                 <TextView
@@ -65,6 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
+                    android:textColor="@color/text_color"
                     android:textSize="13dp" />
 
             </LinearLayout>

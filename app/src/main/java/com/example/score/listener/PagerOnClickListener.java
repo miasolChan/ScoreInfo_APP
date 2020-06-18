@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.score.R;
+import com.example.score.bean.MyDialog;
 
 public class PagerOnClickListener implements View.OnClickListener{
 
@@ -29,8 +30,26 @@ public class PagerOnClickListener implements View.OnClickListener{
                 Toast.makeText(mContext, "图片4被点击", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.pager_img5:
-                Toast.makeText(mContext, "图片5被点击", Toast.LENGTH_SHORT).show();
+                initQuestionDialog();
                 break;
         }
+    }
+
+    public void initQuestionDialog(){
+        final MyDialog dialog = new MyDialog(mContext,true);
+
+        dialog.setOnClickBottomListener(new MyDialog.OnClickBottomListener() {
+            @Override
+            public void onPositiveClick() {
+                dialog.dismiss();
+                Toast.makeText(mContext, "反馈成功", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNegtiveClick() {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

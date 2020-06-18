@@ -8,4 +8,6 @@
     <string name="composer">作曲：</string>
     <string name="detail">介绍：</string>
     <string name="detail_title">配乐详情</string>
+    <string name="back">返回</string>
+    <string name="user_info">用户信息</string>
 </resources>

@@ -1,44 +1,85 @@
 package com.example.score.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.text.TextPaint;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.score.R;
 import com.example.score.fragment.ArticleFragment;
 import com.example.score.fragment.ScoreFragment;
+import com.example.score.service.MusicService;
 import com.example.score.util.DBFileUtil;
 
 import java.io.File;
 
-public class HomeActivity extends FragmentActivity {
+public class HomeActivity extends BaseActivity
+{
 
-    private String[] tags=new String[]{"page1","page2","page3"};
-    private String[] titles=new String[]{"用户","文章","配乐"};
+    private String[] tags=new String[]{"page1","page2"};
+    private String[] titles=new String[]{"文章","配乐"};
     private TabHost tabHost;
     private boolean ifTabInit = false;
+    private ImageButton userBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_activity);
+        setContentView(R.layout.activity_home);
+        //
+        //欢迎
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("Username");
+        Toast.makeText(this, "欢迎"+name, Toast.LENGTH_SHORT).show();
+        //初始化
+        init();
+    }
+
+
+    /**
+     * 初始化
+     */
+    protected void init(){
         //标签栏
         tabHost = (TabHost)findViewById(R.id.tabHost);
         initTab(tabHost);
         //
-        //
         ActivityCompat.requestPermissions(HomeActivity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        //用户界面切换
+        userBtn = (ImageButton) findViewById(R.id.btn_user);
+        userBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, UserInfoActivity.class);
+                //HomeActivity.this.finish();
+                startActivity(intent);
+            }
+        });
+    }
 
+    @Override
+    protected void onRestart() {
+        try {
+            updateBar();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
 
+        super.onRestart();
     }
 
     @Override
@@ -86,17 +127,10 @@ public class HomeActivity extends FragmentActivity {
             tabHost.addTab(tabSpec);
         }
         tabHost.setOnTabChangedListener(new HomeActivity.MyTabChangedListener());
-        tabHost.setCurrentTab(2);
+        tabHost.setCurrentTab(1);
         ifTabInit = true;
         updateTab(tabHost);
 
-//        tabHost.setOnTabChangedListener(new OnTabChangeListener() {
-//            @Override
-//            public void onTabChanged(String tabId) {
-//                tabHost.setCurrentTabByTag(tabId);
-//                updateTab(tabHost);
-//            }
-//        });
     }
 
     /**
@@ -134,12 +168,8 @@ public class HomeActivity extends FragmentActivity {
             tabHost.setCurrentTabByTag(tabId);
             updateTab(tabHost);
             if(tabId.equals("page1")){
-                //System.out.println("配乐页");
-                //getSupportFragmentManager().beginTransaction().replace(R.id.tab1, new ScoreFragment()).commit();
-            }else if(tabId.equals("page2")){
-                System.out.println("文章页");
                 getSupportFragmentManager().beginTransaction().replace(R.id.tab1, new ArticleFragment()).commit();
-            }else if (tabId.equals("page3")&&ifTabInit){
+            }else if(tabId.equals("page2")&&ifTabInit){
                 getSupportFragmentManager().beginTransaction().replace(R.id.tab1, new ScoreFragment()).commit();
             }
         }

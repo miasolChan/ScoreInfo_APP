@@ -32,7 +32,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_activity);
+        setContentView(R.layout.activity_register);
         init();
         dbHelper = new UsersDBHelper(this, "Data.db", null, 1);
     }

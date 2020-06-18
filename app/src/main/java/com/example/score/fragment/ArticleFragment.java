@@ -62,7 +62,7 @@ public class ArticleFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.article_main_page,container,false);
+        View view=inflater.inflate(R.layout.fragment_article_page,container,false);
         //spinner
         //关联
         kindSpinner = (Spinner) view.findViewById(R.id.spinner);
@@ -94,28 +94,12 @@ public class ArticleFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        articleLV.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                int lastPos = view.getLastVisiblePosition();
-                System.out.println("lastPos="+lastPos);
-                //infoList = getArticleService.addArticleList(infoList,lastPos);
-                //articleAdapter = new ArticleListViewAdapter(infoList,articleContext);
-                //articleLV.setAdapter(articleAdapter);
-            }
-        });
         return view;
     }
 
     /**
      *
      */
-
 
 
     private class MySpinnerListener implements Spinner.OnItemClickListener,Spinner.OnItemSelectedListener{
@@ -131,12 +115,23 @@ public class ArticleFragment extends Fragment {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             spinnerAdapter.setSelectId(position);
             //更新数据
-            List<ArticleInfo> selectedInfoList;
+            final List<ArticleInfo> selectedInfoList;
             selectedInfoList = getArticleService.selectItemType(infoList,position);
+            System.out.println("文章数"+selectedInfoList.size());
             //刷新listView的Adapter
             articleAdapter = new ArticleListViewAdapter(selectedInfoList,getContext());
             articleLV.setAdapter(articleAdapter);
-
+            //
+            articleLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getActivity(), ArticleWebActivity.class);
+                    Bundle bundle = new Bundle();
+                    intent.putExtra("article_bundle",bundle);
+                    bundle.putString("articleUrl",selectedInfoList.get(position).getUrl());
+                    startActivity(intent);
+                }
+            });
         }
 
         @Override

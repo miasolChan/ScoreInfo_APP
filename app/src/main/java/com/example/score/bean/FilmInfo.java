@@ -1,5 +1,6 @@
 package com.example.score.bean;
 
+import com.example.score.util.Global;
 import com.example.score.util.NetUtil;
 
 import java.io.Serializable;
@@ -21,7 +22,7 @@ public class FilmInfo implements Serializable,Comparable<FilmInfo> {
     public String getImageHttp() {
         //String http = "http://qay05o8n9.bkt.clouddn.com/" + imageId;
         //String ip = NetUtil.getIpAddressString();
-        String http = "http://115.197.153.136:8080/image/film_image/"+imageId;
+        String http = Global.localIp+ "image/film_image/"+imageId;
         return http;
     }
     public List<String> getMusicUrlList(){
@@ -72,6 +73,9 @@ public class FilmInfo implements Serializable,Comparable<FilmInfo> {
     }
 
     public void setMusicList(List<MusicInfo> musicList) {
+        for (int i = 0; i < musicList.size(); i++) {
+
+        }
         this.musicList = musicList;
     }
 
