@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.score.R;
 import com.example.score.bean.ArticleInfo;
 import com.example.score.util.ImageLoaderUtils;
+import com.example.score.util.PicCacheUtil;
 
 import java.util.List;
 
@@ -59,7 +60,8 @@ public class ArticleListViewAdapter extends BaseAdapter {
         //
         if(parent.getChildCount() == position) {
             ArticleInfo item = infoList.get(position);
-            new ImageLoaderUtils().getImageBitmap(item.getImageHttp(), holder.imageView, this.context);
+            //ImageLoaderUtils.getImageBitmap(item.getImageHttp(), holder.imageView, this.context);
+            PicCacheUtil.getInstance().display(holder.imageView,item.getImageHttp());
         }
        return convertView;
     }

@@ -42,7 +42,7 @@ public class ImageLoaderUtils{
                         @Override
                         public void run() {
                             imageView.setImageBitmap(bitmap);
-                            System.out.println("线程"+url);
+                            //System.out.println("线程"+url);
                         }
                     });
 

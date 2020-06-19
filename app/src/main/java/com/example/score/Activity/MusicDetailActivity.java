@@ -22,6 +22,7 @@ import com.example.score.service.GetMusicService;
 
 import com.example.score.util.Global;
 import com.example.score.util.ImageLoaderUtils;
+import com.example.score.util.PicCacheUtil;
 
 
 import static com.example.score.service.MusicService.mp;
@@ -53,7 +54,8 @@ public class MusicDetailActivity extends BaseActivity {
         imageButton = (ImageButton)findViewById(R.id.detailToList);
         //
         //初始化
-        new ImageLoaderUtils().getImageBitmap(item.getImageHttp(),imageView,this);
+        //ImageLoaderUtils.getImageBitmap(item.getImageHttp(),imageView,this);
+        PicCacheUtil.getInstance().display(imageView,item.getImageHttp());
         name.setText(item.getName());
         composer.setText(item.getComposer());
         intro.setText(item.getIntro());

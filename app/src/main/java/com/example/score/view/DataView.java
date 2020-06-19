@@ -52,7 +52,7 @@ public class DataView extends View {
         textPaint = new Paint();
         textPaint.setAntiAlias(true);
         textPaint.setColor(Color.rgb(102,102,102));// 文本颜色为text颜色
-        textPaint.setTextSize(70);// 文字大小为 70
+        textPaint.setTextSize(50);// 文字大小为 70
 
         linePaint = new Paint();
         linePaint.setColor(Color.rgb(246,136,45));// 连接线为橙色
@@ -98,11 +98,11 @@ public class DataView extends View {
         }
         numlist.add(Global.mCount);//添加今天数据
         //x，y
-        xSpace = (width - 450) / (x.length - 1);// 计算两个点之间的 X 轴间距，左右各留部分空间
+        xSpace = (width - 410) / (x.length - 1);// 计算两个点之间的 X 轴间距，左右各留部分空间
         ySpace = getySpace(numlist);
         for (int i = 0; i <x.length; i++)
         {
-            x[i] = 250 + i * xSpace;
+            x[i] = 150 + i * xSpace;
             y[i] = height-400-numlist.get(i)*ySpace;
         }
         //画点
@@ -123,7 +123,7 @@ public class DataView extends View {
         dates = getWeekDate();
         for (int i = 0; i <dates.size() ; i++) {
             int pos = dates.size()-1-i;
-            canvas.drawText(dates.get(pos), x[i] - 50, height - 350, textPaint);//绘制年份文字
+            canvas.drawText(dates.get(pos), x[i]-50, height - 350, textPaint);//绘制年份文字
         }
 
     }

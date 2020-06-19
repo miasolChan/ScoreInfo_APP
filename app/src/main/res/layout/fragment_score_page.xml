@@ -72,7 +72,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -85,6 +85,7 @@
 
                     <TextView
                         android:id="@+id/hot_0_textView"
+                        android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="TextView" />
@@ -106,6 +107,7 @@
 
                     <TextView
                         android:id="@+id/hot_1_textView"
+                        android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="TextView" />
@@ -114,7 +116,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -127,6 +129,7 @@
 
                     <TextView
                         android:id="@+id/hot_2_textView"
+                        android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="TextView" />

@@ -2,7 +2,6 @@ package com.example.score.bean;
 
 
 import com.example.score.util.Global;
-import com.example.score.util.NetUtil;
 
 /*
 * 文章信息
@@ -28,7 +27,6 @@ public class ArticleInfo {
     }
     public String getImageHttp() {
         //String http = "http://qay05o8n9.bkt.clouddn.com/" + imageId;
-        String ip = NetUtil.getIpAddressString();
         String http = Global.localIp+"image/article_image/"+imageId;
         return http;
     }

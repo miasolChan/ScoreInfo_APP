@@ -34,6 +34,7 @@ import com.example.score.listener.MenuOnclickListener;
 import com.example.score.service.MusicService;
 import com.example.score.util.Global;
 import com.example.score.util.ImageLoaderUtils;
+import com.example.score.util.PicCacheUtil;
 
 import java.text.SimpleDateFormat;
 
@@ -169,7 +170,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         global.musicMenu.setOnClickListener(new MenuOnclickListener(this));
         //界面显示
         String barname = global.song.getName();
-        new ImageLoaderUtils().getImageBitmap(global.song.getImageHttp(),global.barImg,BaseActivity.this);
+        //ImageLoaderUtils.getImageBitmap(global.song.getImageHttp(),global.barImg,BaseActivity.this);
+        PicCacheUtil.getInstance().display(global.barImg,global.song.getImageHttp());
         global.name.setText(barname);
 
     }

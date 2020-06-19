@@ -24,6 +24,7 @@ import com.example.score.bean.FilmInfo;
 import com.example.score.listener.PagerOnClickListener;
 import com.example.score.service.GetMusicService;
 import com.example.score.util.ImageLoaderUtils;
+import com.example.score.util.PicCacheUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,10 +80,11 @@ public class ScoreFragment extends Fragment {
             for (int i = 0; i < arrImageView.length ; i++) {
                 arrTextView[i].setText(filmInfos.get(i).getName());
                 String imageIdHttp = filmInfos.get(i).getImageHttp();
-                new ImageLoaderUtils().getImageBitmap(imageIdHttp, arrImageView[i], view.getContext());
+                //ImageLoaderUtils.getImageBitmap(imageIdHttp, arrImageView[i], view.getContext());
+                PicCacheUtil.getInstance().display(arrImageView[i],imageIdHttp);
             }
         }
-        System.out.println("配乐页加载成功");
+        //System.out.println("配乐页加载成功");
         return view;
     }
 

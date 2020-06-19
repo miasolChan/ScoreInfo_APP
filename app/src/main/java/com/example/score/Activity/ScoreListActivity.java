@@ -2,22 +2,14 @@ package com.example.score.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.score.R;
-import com.example.score.adapter.ScoreListViewAdapter;
 import com.example.score.adapter.ScoreRecyclerViewAdapter;
 import com.example.score.bean.FilmInfo;
 import com.example.score.service.GetMusicService;
@@ -35,7 +27,6 @@ public class ScoreListActivity extends BaseActivity {
     private ScoreRecyclerViewAdapter scoreRecyclerViewAdapter;
     private List<FilmInfo> filmInfos;
     private GetMusicService getMusicService;
-    private ScoreListViewAdapter scoreListViewAdapter;
     ImageButton button;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

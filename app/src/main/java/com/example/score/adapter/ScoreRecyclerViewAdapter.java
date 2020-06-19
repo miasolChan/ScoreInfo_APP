@@ -17,6 +17,7 @@ import com.example.score.activity.MusicDetailActivity;
 import com.example.score.activity.ScoreListActivity;
 import com.example.score.bean.FilmInfo;
 import com.example.score.util.ImageLoaderUtils;
+import com.example.score.util.PicCacheUtil;
 
 import java.io.Serializable;
 import java.util.List;
@@ -72,7 +73,8 @@ public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecycler
         holder.name.setText(infoList.get(position).getName());
         holder.composer.setText(infoList.get(position).getComposer());
         FilmInfo item = infoList.get(position);
-        new ImageLoaderUtils().getImageBitmap(item.getImageHttp(), holder.imageView, this.context);
+        //ImageLoaderUtils.getImageBitmap(item.getImageHttp(), holder.imageView, this.context);
+        PicCacheUtil.getInstance().display(holder.imageView,item.getImageHttp());
     }
 
     @Override

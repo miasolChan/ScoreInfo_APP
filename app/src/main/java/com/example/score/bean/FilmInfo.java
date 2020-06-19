@@ -1,7 +1,6 @@
 package com.example.score.bean;
 
 import com.example.score.util.Global;
-import com.example.score.util.NetUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,8 +19,6 @@ public class FilmInfo implements Serializable,Comparable<FilmInfo> {
     }
 
     public String getImageHttp() {
-        //String http = "http://qay05o8n9.bkt.clouddn.com/" + imageId;
-        //String ip = NetUtil.getIpAddressString();
         String http = Global.localIp+ "image/film_image/"+imageId;
         return http;
     }
