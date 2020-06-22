@@ -79,7 +79,7 @@
                     <ImageView
                         android:id="@+id/hot_0_image"
                         android:layout_width="wrap_content"
-                        android:layout_height="150dp"
+                        android:layout_height="140dp"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/img_error" />
 
@@ -101,7 +101,7 @@
                     <ImageView
                         android:id="@+id/hot_1_image"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="140dp"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/img_error" />
 
@@ -123,7 +123,7 @@
                     <ImageView
                         android:id="@+id/hot_2_image"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="140dp"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/img_error" />
 

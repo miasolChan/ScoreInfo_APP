@@ -21,8 +21,6 @@ import java.util.List;
 
 public class ScoreListActivity extends BaseActivity {
 
-    //ListView
-    //private ListView filmLV;
     private RecyclerView recyclerView;
     private ScoreRecyclerViewAdapter scoreRecyclerViewAdapter;
     private List<FilmInfo> filmInfos;

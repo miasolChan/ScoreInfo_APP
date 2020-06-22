@@ -1,22 +1,16 @@
 package com.example.score.activity;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,15 +19,12 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.example.score.R;
 import com.example.score.bean.MusicInfo;
 import com.example.score.listener.MenuOnclickListener;
 import com.example.score.service.MusicService;
 import com.example.score.util.Global;
-import com.example.score.util.ImageLoaderUtils;
 import com.example.score.util.PicCacheUtil;
 
 import java.text.SimpleDateFormat;
@@ -53,8 +44,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     private View mFloatView;
 
     Global global;
-
-
 
     private  ServiceConnection sc = new ServiceConnection() {
         @Override
@@ -91,7 +80,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /***
-     * 重点，设置这个可以实现前进Activity时候的无动画切换
+     * 设置前进Activity时候的无动画切换
      * @param intent
      */
     @Override
@@ -101,7 +90,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     *  重点，在这里设置按下返回键，或者返回button的时候无动画
+     *  在这里设置按下返回键，或者返回button的时候无动画
      */
     @Override
     public void finish(){
@@ -145,15 +134,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * 更新播放器
-     * 是否为用户点击触发
      */
     SimpleDateFormat time = new SimpleDateFormat("mm:ss");
     public void updateBar(){
         initBar();
-        //进度条
-//        global.seekBar.setProgress(musicService.mp.getCurrentPosition());
-//        global.seekBar.setMax(musicService.mp.getDuration());
-
         //更改context
         global.musicService.setContext(this);
         //更改资源
@@ -170,7 +154,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         global.musicMenu.setOnClickListener(new MenuOnclickListener(this));
         //界面显示
         String barname = global.song.getName();
-        //ImageLoaderUtils.getImageBitmap(global.song.getImageHttp(),global.barImg,BaseActivity.this);
         PicCacheUtil.getInstance().display(global.barImg,global.song.getImageHttp());
         global.name.setText(barname);
 

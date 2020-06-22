@@ -63,6 +63,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_article_page,container,false);
+        //
         //spinner
         //关联
         kindSpinner = (Spinner) view.findViewById(R.id.spinner);

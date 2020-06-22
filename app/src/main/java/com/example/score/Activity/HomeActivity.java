@@ -49,7 +49,6 @@ public class HomeActivity extends BaseActivity
         init();
     }
 
-
     /**
      * 初始化
      */

@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.score.R;
 import com.example.score.activity.MusicDetailActivity;
-import com.example.score.activity.ScoreListActivity;
 import com.example.score.bean.FilmInfo;
-import com.example.score.util.ImageLoaderUtils;
 import com.example.score.util.PicCacheUtil;
 
 import java.io.Serializable;

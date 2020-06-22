@@ -37,9 +37,6 @@ public class MusicService extends Service {
         public MusicService getService() {
             return MusicService.this;
         }
-        public void setBarName(){
-
-        }
     }
     @Nullable
     @Override
@@ -72,10 +69,8 @@ public class MusicService extends Service {
 
     private MusicService(Context context){
         this.context = context;
-        //this.song =song;
-        //setData();
-
     }
+
     /**
      * 更新控件绑定
      */
@@ -155,25 +150,6 @@ public class MusicService extends Service {
         }
     }
 
-
-    /**
-     * 根据序号播放
-     * */
-    public void playIndex(int index){
-        if(mp.isPlaying()){
-            mp.stop();
-        }
-        mp.reset();
-        try {
-            mp.setDataSource(context,Uri.parse(getMusicHttp(global.MUSIC_INDEX)));
-            mp.prepare();
-            mp.seekTo(0);
-            mp.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void playOrPause() {
         if(global.MUSIC_INDEX==-1){

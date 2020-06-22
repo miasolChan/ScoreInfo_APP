@@ -12,9 +12,7 @@ import java.io.FileOutputStream;
 /***
  * 本地缓存
  */
-
 public class LocalCache {
-
     /**
      * 从本地读取图片
      *
@@ -47,7 +45,6 @@ public class LocalCache {
      */
     public void setBitmapToLocal(String url, Bitmap bitmap) {
         try {
-            //String fileName = MD5Tools.MD5(url);//把图片的url当做文件名,并进行MD5加密
             File file = new File(PicCacheUtil.getInstance().CACHE_PATH,url);
 
             File parentFile = file.getParentFile();

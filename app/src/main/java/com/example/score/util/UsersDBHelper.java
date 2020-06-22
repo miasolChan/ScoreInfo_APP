@@ -15,9 +15,7 @@ public class UsersDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //创建表
-        String usersInfo_table = "create table usertable" +
-                "(id integer primary key autoincrement, username text," +
-                "password text)";
+        String usersInfo_table = "create table usertable" + "(id integer primary key autoincrement, username text," + "password text)";
         db.execSQL(usersInfo_table);
 
     }

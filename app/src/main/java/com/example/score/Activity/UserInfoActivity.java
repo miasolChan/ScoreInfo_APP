@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -16,6 +17,7 @@ public class UserInfoActivity extends Activity {
     private TextView text_name, text_condition;
     private String name;
     private ImageButton back;
+    private ImageButton setting;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +41,14 @@ public class UserInfoActivity extends Activity {
                 UserInfoActivity.this.finish();
             }
         });
-        //Tab
+        //设置
+        setting = (ImageButton) findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(UserInfoActivity.this, "设置功能未开放", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }

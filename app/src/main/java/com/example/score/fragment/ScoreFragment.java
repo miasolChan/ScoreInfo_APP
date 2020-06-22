@@ -17,13 +17,11 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.score.R;
-import com.example.score.activity.ArticleWebActivity;
 import com.example.score.activity.ScoreListActivity;
 import com.example.score.adapter.LoopViewAdapter;
 import com.example.score.bean.FilmInfo;
 import com.example.score.listener.PagerOnClickListener;
 import com.example.score.service.GetMusicService;
-import com.example.score.util.ImageLoaderUtils;
 import com.example.score.util.PicCacheUtil;
 
 import java.util.ArrayList;
@@ -99,28 +97,14 @@ public class ScoreFragment extends Fragment {
 
         // 图片资源id数组
         mImg = new int[]{
-                R.drawable.banner_0,
-                R.drawable.banner_1,
-                R.drawable.banner_2,
-                R.drawable.banner_5,
-                R.drawable.banner_4
+                R.drawable.banner_0, R.drawable.banner_1, R.drawable.banner_2, R.drawable.banner_5, R.drawable.banner_4
         };
-
         // 文本描述
         mDec = new String[]{
-                "Test1",
-                "Test2",
-                "Test3",
-                "Test4",
-                "Test5"
+                "Test1", "Test2", "Test3", "Test4", "Test5"
         };
 
-        mImg_id = new int[]{
-                R.id.pager_img1,
-                R.id.pager_img2,
-                R.id.pager_img3,
-                R.id.pager_img4,
-                R.id.pager_img5
+        mImg_id = new int[]{R.id.pager_img1, R.id.pager_img2, R.id.pager_img3, R.id.pager_img4, R.id.pager_img5
         };
 
         // 初始化要展示的5个ImageView

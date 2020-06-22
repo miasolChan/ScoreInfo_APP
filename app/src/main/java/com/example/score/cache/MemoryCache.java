@@ -8,8 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
-        * 内存缓存
-        */
+ * 内存缓存
+ */
 public class MemoryCache extends LruCache<String, Bitmap> {
 
     private LinkedHashMap<String, SoftReference<Bitmap>> mSoftCacheMap;
@@ -20,7 +20,6 @@ public class MemoryCache extends LruCache<String, Bitmap> {
         super((int) (Runtime.getRuntime().maxMemory() / 8));
         this.mSoftCacheMap = new LinkedHashMap<String, SoftReference<Bitmap>>();
     }
-
 
     public Bitmap getBitmapFromMemory(String url) {
         Bitmap bitmap = get(url);

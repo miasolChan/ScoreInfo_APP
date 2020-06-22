@@ -34,7 +34,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         init();
-        dbHelper = new UsersDBHelper(this, "Data.db", null, 1);
+        dbHelper = new UsersDBHelper(this, "UserData.db", null, 1);
     }
 
 
@@ -46,8 +46,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
                     public CharSequence filter(CharSequence source, int start, int end,
                                                Spanned dest, int dstart, int dend) {
                         for (int i = start; i < end; i++) {
-                            if (!Character.isLetterOrDigit(source.charAt(i)) &&
-                                    !Character.toString(source.charAt(i)).equals("_")) {
+                            if (!Character.isLetterOrDigit(source.charAt(i)) && !Character.toString(source.charAt(i)).equals("_")) {
                                 Toast.makeText(RegisterActivity.this, "只能使用'_'、字母、数字、汉字注册！", Toast.LENGTH_SHORT).show();
                                 return "";
                             }
@@ -110,22 +109,30 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        String newName = edit_register.getText().toString();
+        String newPassword = edit_setpassword.getText().toString();
         switch (v.getId()) {
             case R.id.btn_yes:
-                if (CheckIsDataAlreadyInDBorNot(edit_register.getText().toString())) {
+                if(newPassword.length()<6){
+                    Toast.makeText(RegisterActivity.this, "密码设置最少为6位！", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                if (CheckIsDataAlreadyInDBorNot(newName)) {
                     Toast.makeText(this, "该用户名已被注册，注册失败", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (edit_setpassword.getText().toString().trim().
-                            equals(edit_resetpassword.getText().toString())) {
-                        registerUserInfo(edit_register.getText().toString(),
-                                edit_setpassword.getText().toString());
+                    if (newPassword.trim().equals(edit_resetpassword.getText().toString()))
+                    {
+                        registerUserInfo(newName, newPassword);
                         Toast.makeText(this, "注册成功！", Toast.LENGTH_SHORT).show();
-                        Intent register_intent = new Intent(RegisterActivity.this,
-                                Login_Activity.class);
+                        //传用户信息
+                        Intent register_intent = new Intent(RegisterActivity.this, Login_Activity.class);
+                        Bundle bundle = new Bundle();
+                        register_intent.putExtra("user_bundle",bundle);
+                        bundle.putString("new_name",newName);
+                        bundle.putString("new_password",newPassword);
                         startActivity(register_intent);
                     } else {
-                        Toast.makeText(this, "两次输入密码不同，请重新输入！",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "两次输入密码不同，请重新输入！", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
@@ -138,20 +145,6 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
         }
     }
 
-
-    /**
-     * 利用SharedPreferences进行默认登陆设置
-     */
-    private void saveUsersInfo() {
-        SharedPreferences sharedPreferences = getSharedPreferences("UsersInfo", MODE_APPEND);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("username", edit_register.getText().toString());
-        //判断注册时的两次密码是否相同
-        if (edit_setpassword.getText().toString().equals(edit_resetpassword.getText().toString())) {
-            editor.putString("password", edit_setpassword.getText().toString());
-        }
-        editor.commit();
-    }
 
     /**
      * 利用sql创建嵌入式数据库进行注册访问

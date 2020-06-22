@@ -1,8 +1,6 @@
 package com.example.score.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -10,8 +8,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.fragment.app.FragmentActivity;
 
 import com.example.score.R;
 import com.example.score.adapter.MusicListAdapter;
@@ -21,7 +17,6 @@ import com.example.score.bean.MyDialog;
 import com.example.score.service.GetMusicService;
 
 import com.example.score.util.Global;
-import com.example.score.util.ImageLoaderUtils;
 import com.example.score.util.PicCacheUtil;
 
 

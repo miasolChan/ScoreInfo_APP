@@ -1,8 +1,6 @@
 package com.example.score.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.score.R;
 import com.example.score.bean.ArticleInfo;
-import com.example.score.util.ImageLoaderUtils;
 import com.example.score.util.PicCacheUtil;
 
 import java.util.List;

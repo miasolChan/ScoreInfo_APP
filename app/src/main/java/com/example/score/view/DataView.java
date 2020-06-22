@@ -130,7 +130,7 @@ public class DataView extends View {
 
     protected ArrayList<String> getWeekDate(){
         ArrayList<String> strings = new ArrayList<String>();
-        SimpleDateFormat sp=new SimpleDateFormat("MM-dd");
+        SimpleDateFormat sp=new SimpleDateFormat("MM.dd");
         Calendar cal=Calendar.getInstance();
         for (int i = 0; i < 7 ; i++) {
             if(i == 0){
